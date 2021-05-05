@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
 
@@ -43,6 +45,21 @@ public class TesteCampoTreinamento {
         driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
         driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
         Assertions.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:2")).isSelected());
+    }
+
+    @Test
+    @DisplayName("Deve interagir com Combo")
+    void comboBoxTest(){
+        driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+        WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+        Select combo = new Select(element);
+        //combo.selectByIndex(2);
+        //combo.selectByValue("superior");
+        combo.selectByVisibleText("Mestrado");
+
+        Assertions.assertEquals("Mestrado", combo.getFirstSelectedOption().getText());
+
     }
 
     @AfterEach
