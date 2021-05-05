@@ -27,6 +27,24 @@ public class TesteCampoTreinamento {
         Assertions.assertEquals("Teste de Area",  driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
     }
 
+    @Test
+    @DisplayName("Deve interagir com RadioButton")
+    void radioButtonTest(){
+        driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+        driver.findElement(By.id("elementosForm:sexo:0")).click();
+        Assertions.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
+    }
+
+    @Test
+    @DisplayName("Deve interagir com Checkbox")
+    void checkBoxTest(){
+        driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/campo_treinamento/componentes.html");
+        driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
+        Assertions.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:2")).isSelected());
+    }
+
     @AfterEach
     void close(){
         driver.quit();
